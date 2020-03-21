@@ -81,14 +81,15 @@
 	</section>
 	</div>
 	<section class="container">
-		<table class='table table-sm mt-2' id='reservations-table'>
-			<thead>
+		<table class='table table-md mt-2' id='reservations-table'>
+			<thead class="thead-light">
 				<tr>
 					<th>Imię</th>
 					<th>Nazwisko</th>
 					<th>Stanowisko</th>
 					<th>Od</th>
 					<th>Do</th>
+					<th></th>
 				</tr>
 			</thead>
 

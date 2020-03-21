@@ -1,0 +1,7 @@
+#reservations-table tr td button {
+    display: none;
+}
+
+.colRemove {
+    width: 100px;
+}

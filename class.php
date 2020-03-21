@@ -262,7 +262,7 @@ class workspaceDB {
         public function get_reservations() {
             if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
                 $query = "
-                SELECT name, surname, code, registration_date, expiration_date FROM reservations 
+                SELECT reservations.id as rid, name, surname, code, registration_date, expiration_date FROM reservations 
                 LEFT JOIN people ON people.id = person_id 
                 LEFT JOIN workspaces ON workspaces.id = workspace_id 
                 ORDER BY expiration_date DESC
@@ -270,6 +270,7 @@ class workspaceDB {
                 if ($result = mysqli_query($this->con, $query)) {
                     while($row = mysqli_fetch_assoc($result)) {
                         $return[] = array (
+                            "id" => $row['rid'],
                             "name" => $row['name'],
                             "surname" => $row['surname'],
                             "workspace" => $row['code'],
@@ -303,7 +304,23 @@ class workspaceDB {
                 //Jeśli nie koliduje, dodaje nową rezerwację
                 if (mysqli_query($this->con, "INSERT INTO reservations (workspace_id, person_id, registration_date, expiration_date) VALUES ($workspace_id, $person_id, '$date_from', '$date_to')")) return true;
                 else {
-                    $this->err = "Nie da sie dodać stanowiska";
+                    $this->err = "Nie da sie dodać rezerwacji";
+                    return false;
+                }
+            } else {
+                $this->err = 'Nie połączono z bazą danych';
+                return false;
+            }
+
+        }
+
+        //Funkcja służąca do usuwania rezerwacji stanowisk
+        public function remove_reservation($id) {
+            if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
+                //Usuwanie rejesteracji o danym ID
+                if (mysqli_query($this->con, "DELETE FROM reservations WHERE id = $id")) return true;
+                else {
+                    $this->err = "Nie da sie usunąć rezerwacji";
                     return false;
                 }
             } else {

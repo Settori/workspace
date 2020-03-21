@@ -27,6 +27,16 @@ $(document).ready(function(){
         $("#form-date-to").attr("min", $(this).val()); //Ustawienie pola "min" w polu z datą końca rejestracji, tak aby nie mogło być mniejsze od pola początku rejestracji 
     });
 
+    $("#reservations-table tbody").on("mouseover", "tr", function(){
+        $(this).find('button').show();
+    });
+    $("#reservations-table tbody").on("mouseout", "tr", function(){
+        $(this).find('button').hide();
+    });
+    $("#reservations-table tbody").on("click", "button", function(){
+        removeReservation($(this).attr('alt'));
+    });
+
     
 });
 
@@ -40,7 +50,7 @@ function getReservations() {
         success: function(res) {
             $("#reservations-table tbody").html("");    //Zerowanie tabeli
             $.each( res, function( key, value ) {
-                var content = getReservationsContent(res[key]['name'], res[key]['surname'], res[key]['workspace'], res[key]['date_from'], res[key]['date_to']);
+                var content = getReservationsContent(res[key]['id'], res[key]['name'], res[key]['surname'], res[key]['workspace'], res[key]['date_from'], res[key]['date_to']);
                 
                 $("#reservations-table tbody").html($("#reservations-table tbody").html() + content);   //Dodawanie rezerwacji do tabeli
             });
@@ -68,15 +78,31 @@ function addReservation() {
     })
 }
 
+//Funkcja dynamicznie usuwająca rezerwacje z bazy danych
+function removeReservation(rId) {
+    $.ajax({
+        url: "components/remove_reservation_json.php",
+        method: "post",
+        data: {     //Dane przekazywane do pliku metodą POST
+            id : rId
+        },
+        dataType: "json",
+        success: function(res) {
+            getReservations();
+        }
+    })
+}
+
 
 //Funkcja przerabiająca dane do odpowiedniej postaci HTML
-function getReservationsContent(rName, rSurname, rWorkspace, rDateFrom, rDateTo) {
+function getReservationsContent(rId, rName, rSurname, rWorkspace, rDateFrom, rDateTo) {
     var content = "<tr>";
         content += "<td>" + rName + "</td>";
         content += "<td>" + rSurname + "</td>";
         content += "<td>" + rWorkspace + "</td>";
         content += "<td>" + rDateFrom + "</td>";
         content += "<td>" + rDateTo + "</td>";
+        content += "<td class='colRemove'><button class='btn btn-sm btn-outline-danger py-0 my-0' alt='" + rId + "'>Usuń</button></td>";
         content += "</tr>";
 		
     return content;
@@ -96,7 +122,7 @@ function getEquipment() {
             $("#form-equipment").html("");      //Zerowanie kontenera z wyposażeniem
             $.each( res, function( key, value ) {
                 //Tworzenie wyposażenia w formie przycisków
-                var content = "<span class='btn btn-sm btn-outline-secondary mr-1 mb-1 equipmentButton'>" + res[key]['model'] + "</span>";
+                var content = "<button class='btn btn-sm btn-outline-dark mr-1 mb-1 equipmentButton' disabled>" + res[key]['model'] + "</button>";
                 $("#form-equipment").html($("#form-equipment").html() + content);       //Dodawanie wyposażenia do kontenera
             });
             
