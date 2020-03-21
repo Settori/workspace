@@ -4,14 +4,14 @@ $(document).ready(function(){
 
     //Obsłużenie kliknięcia w przycisk rezerwacji
     $(".reservationSubmit").click(function(){
-        if (
+        if (        //Sprawdzenie czy żadne pole z datą i godziną nie jest puste
             $("#form-date-from").val() == '' ||
             $("#form-date-to").val() == '' ||
             $("#form-time-from").val() == '' ||
             $("#form-time-to").val() == ''
         ) {
             alert("Żadne pole nie może być puste");
-            return false;
+            return false;   //Blokowanie przeładowania strony po kliknięciu
         }
         addReservation();   //Wywołanie funkcji dodającej rezerwację do bazy danych
         return false;       //Blokowanie przeładowania strony po kliknięciu
@@ -27,12 +27,17 @@ $(document).ready(function(){
         $("#form-date-to").attr("min", $(this).val()); //Ustawienie pola "min" w polu z datą końca rejestracji, tak aby nie mogło być mniejsze od pola początku rejestracji 
     });
 
+    //Wyświetlanie przycisku do usuwania rezerwacji stanowiska po najechaniu
     $("#reservations-table tbody").on("mouseover", "tr", function(){
         $(this).find('button').show();
     });
+
+    //Ukrywanie przycisku do usuwania rezerwacji stanowiska po opuszczeniu kursora
     $("#reservations-table tbody").on("mouseout", "tr", function(){
         $(this).find('button').hide();
     });
+
+    //Usunięcie rezerwacji stanowiska po kliknięciu w przycisk "usuń"
     $("#reservations-table tbody").on("click", "button", function(){
         removeReservation($(this).attr('alt'));
     });

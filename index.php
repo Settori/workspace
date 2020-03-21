@@ -64,12 +64,12 @@
 			<div class="row mt-1">
 				<div class="col">
 					<label for="form-date-to" class="col-form-label">Data zakończenia</label>
-					<input type="date" class="form-control" name="date-to" id="form-date-to" value="<?php echo date("Y-m-d"); ?>" min="<?php echo date("Y-m-d"); ?>" required>
+					<input type="date" class="form-control" name="date-to" id="form-date-to" value="" min="<?php echo date("Y-m-d"); ?>" required>
 				</div>
 
 				<div class="col">
 					<label for="form-time-to" class="col-form-label">Godzina</label>
-					<input type="time" class="form-control" name="time-to" id="form-time-to" value="<?php echo date("H:i"); ?>" required>
+					<input type="time" class="form-control" name="time-to" id="form-time-to" value="" required>
 				</div>
 				<div class="col-3"></div>
 				<div class="col-3 float-right">
