@@ -5,6 +5,7 @@
 
     foreach ($db->get_reservations() as $r) {   //Wywołanie funkcji pobierającej rezerwacje
         $return[] = array(
+            "id" => $r['id'],               //ID rezerwacji
             "name" => $r['name'],           //Imię osoby rezerwującej stanowisko
             "surname" => $r['surname'],     //Nazwisko osoby rezerwującej stanowisko
             "workspace" => $r['workspace'], //Kod stanowiska
