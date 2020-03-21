@@ -9,8 +9,8 @@
             "name" => $r['name'],           //Imię osoby rezerwującej stanowisko
             "surname" => $r['surname'],     //Nazwisko osoby rezerwującej stanowisko
             "workspace" => $r['workspace'], //Kod stanowiska
-            "date_from" => $r['date_from'], //Data rozpoczęcia rejestracji
-            "date_to" => $r['date_to']      //Data zakończenia rejestracji
+            "date_from" => date("Y-m-d H:i", strtotime($r['date_from'])), //Data rozpoczęcia rejestracji
+            "date_to" => date("Y-m-d H:i", strtotime($r['date_to']))      //Data zakończenia rejestracji
 
         );
     }

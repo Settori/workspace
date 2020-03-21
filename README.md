@@ -29,6 +29,6 @@ W sekcji zarządzania wyposażeniem, aby usunąć wybrane wyposażenie, należy 
 ![wyposażenie](https://raw.githubusercontent.com/Settori/images/master/Screenshot_20200321_142212.png)
 
 Usuwanie rezerwacji stanowiska odbywa się poprzez kliknięcie w przycisk **usuń**, widoczny po najechaniu na dany wiersz w tabeli
-![usuwanie](https://raw.githubusercontent.com/Settori/images/master/Screenshot_20200321_141123.png)
+![usuwanie](https://raw.githubusercontent.com/Settori/images/master/Screenshot_20200321_145949.png)
 
 Wyświetlanie, dodawanie i usuwanie elementów odbywa się dynamicznie.
