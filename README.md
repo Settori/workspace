@@ -25,7 +25,7 @@ private $db_name = "";     //Nazwa bazy danych
 Wyposażenie wyświetlane jest pod listą wyboru stanowiska
 ![stanowiska](https://raw.githubusercontent.com/Settori/images/master/stanowiska.png)
 
-W sekcji zarządzania wyposażeniem, aby usunąć wybrane wyposażenie, należy na nie kliknąć. Tabela automatycznie się odświeży, razem z listą wyboru wyposażenia. Usunięty element będzie z nowu widoczny w liście wyboru.
+W sekcji zarządzania wyposażeniem, aby usunąć wybrane wyposażenie należy na nie kliknąć. Tabela automatycznie się odświeży, razem z listą wyboru wyposażenia. Usunięty element będzie znowu widoczny w liście wyboru.
 ![wyposażenie](https://raw.githubusercontent.com/Settori/images/master/Screenshot_20200321_142212.png)
 
 Usuwanie rezerwacji stanowiska odbywa się poprzez kliknięcie w przycisk **usuń**, widoczny po najechaniu na dany wiersz w tabeli
