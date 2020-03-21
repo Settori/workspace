@@ -51,8 +51,8 @@
 				</div>
 			</div>
         </form>
-		<table class='table table-sm' id="workspaces-table">
-			<thead>
+		<table class='table' id="workspaces-table">
+			<thead class="thead-light">
 				<tr>
 					<th>Kod stanowiska</th>
 					<th>Opis</th>
