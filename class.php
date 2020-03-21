@@ -16,7 +16,7 @@ class workspaceDB {
         public function connect() {
 			if ($connect = mysqli_connect($this->db_host, $this->db_user, $this->db_pass)) {
 				if (mysqli_select_db($connect, $this->db_name)) {
-					$this->con = $connect;
+					$this->con = $connect;      //Przypisanie połączenia do zmiennej
 					mysqli_query($this->con, "SET NAMES 'utf8'");
 					return true;
 				} else {
@@ -37,7 +37,7 @@ class workspaceDB {
         //Pobieranie listy pracowników
         public function get_people() {
             if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
-                $query = "SELECT * from people ORDER BY id";
+                $query = "SELECT * from people ORDER BY id";        //Zapytanie SQL pobierające dane pracowników
                 if ($result = mysqli_query($this->con, $query)) {
                     while($row = mysqli_fetch_assoc($result)) {
                         $return[] = array (
@@ -68,7 +68,7 @@ class workspaceDB {
             if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
                 if (mysqli_query($this->con, "INSERT INTO people (name, surname, tel, email, description) VALUES ('$name', '$surname', $tel, '$email', '$desc')")) return true;
                 else {
-                    $this->err = "Nie da sie dodać osoby<br />";
+                    $this->err = "Nie da sie dodać osoby";
                     return false;
                 }
             } else {
@@ -87,7 +87,7 @@ class workspaceDB {
         //Funkcja zwracająca listę stanowisk
         public function get_workspaces() {
             if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
-                $query = "SELECT * from workspaces ORDER BY id";
+                $query = "SELECT * from workspaces ORDER BY id";        //Zapytanie SQL pobierające dane stanowisk
                 if ($result = mysqli_query($this->con, $query)) {
                     while($row = mysqli_fetch_assoc($result)) {
                         $return[] = array (
@@ -98,7 +98,7 @@ class workspaceDB {
                         );
                     }
                     
-                    return $return;
+                    return $return;     //Zwracanie listy stanowisk
                 } else {
                     $this->err = 'Nie udało się pobrać danych';
                     return false;
@@ -115,7 +115,7 @@ class workspaceDB {
             if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
                 if (mysqli_query($this->con, "INSERT INTO workspaces (code, description) VALUES ('$code', '$desc')")) return true;
                 else {
-                    $this->err = "Nie da sie dodać stanowiska<br />";
+                    $this->err = "Nie da sie dodać stanowiska";
                     return false;
                 }
             } else {
@@ -230,7 +230,7 @@ class workspaceDB {
             if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
                 if (mysqli_query($this->con, "INSERT INTO equipment_data (type, model, code, purchase_date, value, description) VALUES ($type, '$model', '$code', '$date', $value, '$desc')")) return true;
                 else {
-                    $this->err = "Nie da sie dodać wyposażenia<br />";
+                    $this->err = "Nie da sie dodać wyposażenia";
                     return false;
                 }
             } else {
@@ -245,7 +245,7 @@ class workspaceDB {
             if ($this->con) {       //Sprawdzenie czy połączenie zostało nawiązane
                 if (mysqli_query($this->con, "INSERT INTO workspaces_equipment (workspace_id, equipment_id) VALUES ($workspace_id, $equipment_id)")) return true;
                 else {
-                    $this->err = "Nie da sie dodać wyposażenia<br />";
+                    $this->err = "Nie da sie dodać wyposażenia";
                     return false;
                 }
             } else {
